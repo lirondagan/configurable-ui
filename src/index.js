@@ -20,11 +20,11 @@ const getChildren = function(config){
 };
 
 const getElementType = function(config){
-	return config.element;
+	return config.type;
 };
 
 const getProps = function(config){
-	return null;
+	return config.props;
 };
 
 const createElementsFromConfig = function(config){
@@ -49,10 +49,12 @@ const createElementFromConfig = function(config){
 
 var config = {
 	name: {
-		element: 'input',
+		type: 'input',
 		field: 'name',
-		type: 'text',
-		value: 'myValue'
+		props: {
+			type: 'text',
+			value: 'myValue'
+		}
 	},
 	// personalDetailsGroup : {
 	// 	element: 'div',
