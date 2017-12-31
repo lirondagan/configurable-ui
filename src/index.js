@@ -8,31 +8,38 @@ const init = function(){
 };
 
 const render = function(config){
-	let rootElement = createElements(config);
+	let rootElement = createElement(config);
 	return ReactDOM.render(
 		rootElement,
 		document.getElementById('main')
 	);
 };
 
-const createElements = function(config){
-	// for(){
-
-	// }
-	let rootElement = createElement(config);
-	return rootElement;
+const createElements = function(childrenConfig){
+	let children = [];
+	if(childrenConfig){
+		children = childrenConfig.map(config => createElement(config));
+	}
+	return children;
 };
 
+const isElementCanHaveChildren = function(config){
+	if(config.type == "input"){
+		return false;
+	}
+	return true;
+};
+
+
 const createElement = function(config){
-// React.createElement(
-//   type,
-//   [props],
-//   [...children]
-// )
+	let children = null;
+	if(isElementCanHaveChildren(config)){
+		children = createElements(config.children);
+	}
 	let element = React.createElement(
 		config.type,
 		config.props,
-		config.children
+		children
 	)
 	return element;
 };
@@ -41,7 +48,23 @@ init();
 render({
 	type: "div",
 	props: {
-		className: "mainDiv"
+		className: "mainDiv",
+		key: "0"
 	},
-	children: []
+	children: [
+		{
+			type: "input",
+			props: {
+				className: "child1",
+				key: "1"
+			},
+		},
+		{
+			type: "div",
+			props: {
+				className: "child2",
+				key: "2"
+			},
+		},
+	]
 });
