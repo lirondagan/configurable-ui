@@ -1,79 +1,47 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const render = function(config){
-	let rootElement = createElementsFromConfig(config);
+const init = function(){
+	const div = document.createElement('div');
+	div.setAttribute('id', 'main');
+	document.body.appendChild(div);
+};
 
+const render = function(config){
+	let rootElement = createElements(config);
 	return ReactDOM.render(
 		rootElement,
 		document.getElementById('main')
 	);
-
-	// return ReactDOM.render(
-	// 	<div>hhh</div>,
-	// 	document.getElementById('main')
-	// );
 };
 
-const getChildren = function(config){
-	return null;
+const createElements = function(config){
+	// for(){
+
+	// }
+	let rootElement = createElement(config);
+	return rootElement;
 };
 
-const getElementType = function(config){
-	return config.type;
-};
-
-const getProps = function(config){
-	return config.props;
-};
-
-const createElementsFromConfig = function(config){
-	// Object.keys(config).map(function(elementKey){
-	// 	let elementConfig = config[elementKey];
-	// 	createElementFromConfig(elementConfig);
-	// });
-	let elementKey = 'name';
-	let elementConfig = config[elementKey];
-	elementConfig.key = elementKey;
-	return createElementFromConfig(elementConfig);
-};
-
-const createElementFromConfig = function(config){
-	let elementType = getElementType(config);
-	let props = getProps(config);
-	let children = getChildren(config);
-	
-	let element = React.createElement(elementType, props, children);
+const createElement = function(config){
+// React.createElement(
+//   type,
+//   [props],
+//   [...children]
+// )
+	let element = React.createElement(
+		config.type,
+		config.props,
+		config.children
+	)
 	return element;
 };
 
-var config = {
-	name: {
-		type: 'input',
-		field: 'name',
-		props: {
-			type: 'text',
-			value: 'myValue'
-		}
+init();
+render({
+	type: "div",
+	props: {
+		className: "mainDiv"
 	},
-	// personalDetailsGroup : {
-	// 	element: 'div',
-	// 	className: 'personalDetailsGroup',
-	// 	children: {
-	// 		firstName: {
-	// 			element: 'firstName',
-	// 			field: 'firstName',
-	// 			type: 'text',
-	// 			value: 'Shula'
-	// 		},
-	// 		lastName: {
-	// 			element: 'lastName',
-	// 			field: 'lastName',
-	// 			type: 'text',
-	// 			value: 'Ajami'
-	// 		},
-	// 	}
-	// }
-};
-
-render(config);
+	children: []
+});
