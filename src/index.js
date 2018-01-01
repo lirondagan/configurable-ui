@@ -29,7 +29,10 @@ let config = {
 			},
 		},
 		{
-			type: MyComponent
+			type: MyComponent,
+			props: {
+				value: 1 
+			},
 		}
 	]	
 };
