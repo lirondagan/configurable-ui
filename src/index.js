@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ConfigUi from './configurable-ui';
+import MyComponent from './my-component';
 
 const init = function(){
 	const div = document.createElement('div');
@@ -12,31 +13,24 @@ init();
 let config = {
 	type: "div",
 	props: {
-		className: "mainDiv",
-		//key: "0"
+		className: "mainDiv"
 	},
 	children: [
 		{
 			type: "input",
 			props: {
-				className: "child1",
-				//key: "1"
+				className: "child1"
 			},
 		},
 		{
 			type: "input",
 			props: {
-				className: "child2",
-				//key: "2"
+				className: "child2"
 			},
 		},
-		// {
-		// 	type: "input",
-		// 	props: {
-		// 		className: "child3",
-		// 		key: "3"
-		// 	},
-		// }
+		{
+			type: MyComponent
+		}
 	]	
 };
 
