@@ -35,16 +35,24 @@ const createElement = function(config){
 	let children = null;
 	if(isElementCanHaveChildren(config)){
 		children = createElements(config.children);
+		let element = React.createElement(
+			config.type,
+			config.props,
+			...children
+		)
 	}
-	let element = React.createElement(
-		config.type,
-		config.props,
-		children
-	)
+	else{
+		 element = React.createElement(
+			config.type,
+			config.props
+		)
+	}
 	return element;
 };
 
 init();
+
+
 render({
 	type: "div",
 	props: {
@@ -56,15 +64,22 @@ render({
 			type: "input",
 			props: {
 				className: "child1",
-				key: "1"
+				//key: "1"
 			},
 		},
 		{
-			type: "div",
+			type: "input",
 			props: {
 				className: "child2",
-				key: "2"
+				//key: "2"
 			},
 		},
-	]
+		// {
+		// 	type: "input",
+		// 	props: {
+		// 		className: "child3",
+		// 		key: "3"
+		// 	},
+		// }
+	]	
 });
